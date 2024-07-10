@@ -10,3 +10,9 @@ gem "minitest"
 gem "sqlite3", "< 2"
 gem "rubocop"
 gem "rubocop-minitest"
+
+if defined?(@ar_gem_requirement)
+  gem "activerecord", @ar_gem_requirement
+else
+  gem "activerecord" # latest
+end

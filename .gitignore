@@ -7,4 +7,5 @@
 /spec/reports/
 /tmp/
 
+gemfiles/**.lock
 /debug.log*

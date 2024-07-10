@@ -78,6 +78,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_record_tracer!
+  activerecord
   minitest
   rake (~> 13.0)
   rubocop
