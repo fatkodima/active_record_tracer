@@ -7,16 +7,23 @@ jobs:
     strategy:
       matrix:
         include:
-          - gemfile: activerecord_70.gemfile
-          - gemfile: activerecord_72.gemfile
-          - gemfile: activerecord_head.gemfile
+          - ruby-version: "3.1"
+            gemfile: activerecord_71.gemfile
+          - ruby-version: "3.1"
+            gemfile: activerecord_72.gemfile
+          - ruby-version: "3.4"
+            gemfile: activerecord_80.gemfile
+
+          # Test against latest versions just in case.
+          - ruby-version: "3.4"
+            gemfile: activerecord_head.gemfile
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.1
+          ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true
       - name: Run the test suite
         run: bundle exec rake

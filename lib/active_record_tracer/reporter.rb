@@ -24,7 +24,7 @@ module ActiveRecordTracer
       @backtraces_cache = {}
     end
 
-    def start
+    def start # rubocop:disable Naming/PredicateMethod
       @subscriber1 = ActiveSupport::Notifications.monotonic_subscribe("sql.active_record") do |_name, start, finish, _id, payload|
         next if payload[:cached] && @ignore_cached_queries
         next if payload[:name] == "SCHEMA" && @ignore_schema_queries
