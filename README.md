@@ -62,7 +62,7 @@ be the only time you can retrieve the report using this API.
 
 ### Tracing tests
 
-To trace tests, use the folloding somewhere in the `rails_helper.rb`/`test_helper.rb`:
+To trace tests, use the following somewhere in the `rails_helper.rb`/`test_helper.rb`:
 
 ```ruby
 ActiveRecordTracer.start
