@@ -52,8 +52,8 @@ class ReportingTest < Minitest::Test
     assert_match(/4  .+test\/sample_class.rb/, out)
 
     assert_includes out, "SQL queries by backtrace"
-    assert_match(/3  .+test\/sample_class.rb:11:in `inner'/, out)
-    assert_match(/1  .+test\/sample_class.rb:5:in `outer'/, out)
+    assert_match(/3  .+test\/sample_class.rb:11:in (`|')(SampleClass\.)?inner'/, out) # simplify these regexps when on ruby 3.4
+    assert_match(/1  .+test\/sample_class.rb:5:in (`|')(SampleClass\.)?outer'/, out)
   end
 
   def test_prints_records_stats
@@ -77,8 +77,8 @@ class ReportingTest < Minitest::Test
     assert_match(/8  .+test\/sample_class.rb/, out)
 
     assert_includes out, "Loaded records by backtrace"
-    assert_match(/5  .+test\/sample_class.rb:11:in `inner'/, out)
-    assert_match(/3  .+test\/sample_class.rb:5:in `outer'/, out)
+    assert_match(/5  .+test\/sample_class.rb:11:in (`|'SampleClass\.)?inner'/, out)
+    assert_match(/3  .+test\/sample_class.rb:5:in (`|'SampleClass\.)?outer'/, out)
   end
 
   def test_top_results
@@ -111,7 +111,7 @@ class ReportingTest < Minitest::Test
       report.pretty_print
     end
     assert_includes out, "SQL queries by backtrace"
-    assert_match(/test\/sample_class.rb:6:in `block in outer'/, out)
+    assert_match(/test\/sample_class.rb:6:in (`|')block in (SampleClass\.)?outer'/, out)
 
     report = ActiveRecordTracer.report(backtrace_lines: 1) do
       SampleClass.outer

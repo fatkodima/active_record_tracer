@@ -11,7 +11,7 @@ which records are loaded the most, and the sources of those? This tool to the re
 ## Requirements
 
 - ruby 3.1+
-- activerecord 7.0+
+- activerecord 7.1+
 
 ## Installation
 
