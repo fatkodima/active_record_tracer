@@ -62,11 +62,11 @@ be the only time you can retrieve the report using this API.
 
 ### Tracing tests
 
-To trace tests, use the following somewhere in the `rails_helper.rb`/`test_helper.rb`:
+To trace tests, use the following in `test_helper.rb` for Minitest:
 
 ```ruby
 ActiveRecordTracer.start
-at_exit do
+Minitest.after_run do
   report = ActiveRecordTracer.stop
   report.pretty_print(to_file: "tmp/active_record_tracer-tests.txt")
 end
